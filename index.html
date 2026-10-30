@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tile Clash - Interactive Memory Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="spiderman">
+
+  <!-- Live Animated Background Characters -->
+  <div class="bg-character-container">
+    <div id="walkingChar" class="bg-char walking">
+      <i class="fa-solid fa-spider"></i>
+    </div>
+    <div id="sittingChar" class="bg-char sitting">
+      <i class="fa-solid fa-mask"></i>
+    </div>
+  </div>
+
+  <!-- Centered Navbar -->
+  <nav class="navbar">
+    <button id="menuBtn" class="hamburger-btn" aria-label="Open Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Centered Player Greeting Badge -->
+    <div id="playerGreeting" class="player-pill">
+      <i class="fa-solid fa-user-ninja"></i> Player
+    </div>
+
+    <span class="nav-title"><i class="fa-solid fa-cubes-stacked"></i> TILE CLASH</span>
+  </nav>
+
+  <!-- Slide-Out Sidebar Menu -->
+  <aside id="sideMenu" class="side-menu hidden-menu">
+    <div class="menu-header">
+      <h2><i class="fa-solid fa-sliders"></i> Game Settings</h2>
+      <button id="closeMenuBtn" class="close-btn">&times;</button>
+    </div>
+
+    <div class="menu-content">
+      <div class="menu-group">
+        <label><i class="fa-solid fa-palette"></i> Choose Theme World</label>
+        <select id="themeSelect" class="menu-input">
+          <option value="spiderman">🕷️ Spiderman & Heroes</option>
+          <option value="harrypotter">⚡ Harry Potter & Magic</option>
+          <option value="animals">🐶 Cute Animals</option>
+          <option value="candy">🍬 Candy Kingdom</option>
+          <option value="arcade">🎮 Retro Arcade</option>
+        </select>
+      </div>
+
+      <div class="menu-group">
+        <button id="changePlayerBtn" class="menu-btn secondary-btn"><i class="fa-solid fa-user-pen"></i> Change Player Name</button>
+      </div>
+
+      <div class="menu-group">
+        <button id="resetScoreBtn" class="menu-btn danger-btn"><i class="fa-solid fa-trash-can"></i> Reset High Score</button>
+      </div>
+
+      <div class="menu-group info-box">
+        <h4><i class="fa-solid fa-circle-info"></i> How to Play</h4>
+        <p>Flip two cards at a time. Match all pairs with the fewest moves and fastest time!</p>
+      </div>
+    </div>
+  </aside>
+
+  <div id="menuOverlay" class="menu-overlay hidden"></div>
+
+  <!-- Main Game Container -->
+  <div class="game-wrapper">
+    <header class="header">
+      <h1 class="main-title">TILE CLASH</h1>
+      <p id="themeTagline" class="tagline">Flip, match, and conquer!</p>
+    </header>
+
+    <!-- Daily Motivational Quote Banner -->
+    <div class="quote-banner">
+      <i class="fa-solid fa-quote-left"></i>
+      <span id="dailyQuote">"Sharpen your mind, one flip at a time!"</span>
+    </div>
+
+    <!-- Stats Dashboard -->
+    <section class="stats-panel">
+      <div class="stat-card">
+        <span class="stat-label"><i class="fa-solid fa-arrows-rotate"></i> Moves</span>
+        <span id="movesCount" class="stat-val">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label"><i class="fa-solid fa-clock"></i> Time</span>
+        <span id="timerDisplay" class="stat-val">00:00</span>
+      </div>
+      <div class="stat-card gold">
+        <span class="stat-label"><i class="fa-solid fa-trophy"></i> Best Score</span>
+        <span id="bestScoreDisplay" class="stat-val">--</span>
+      </div>
+    </section>
+
+    <!-- Restart Button -->
+    <div class="action-bar">
+      <button id="restartBtn" class="btn primary-btn"><i class="fa-solid fa-rotate-right"></i> Restart Game</button>
+    </div>
+
+    <!-- 4x4 Card Grid -->
+    <main id="gameGrid" class="grid-container"></main>
+  </div>
+
+  <!-- Player Name Input Modal -->
+  <div id="nameModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-avatar"><i class="fa-solid fa-user-ninja"></i></div>
+      <h2>Welcome Player!</h2>
+      <p>Enter your hero name to play Tile Clash:</p>
+      <input type="text" id="playerNameInput" placeholder="Your name..." maxlength="15">
+      <button id="saveNameBtn" class="btn primary-btn full-width">Let's Clash!</button>
+    </div>
+  </div>
+
+  <!-- Victory Modal -->
+  <div id="victoryModal" class="modal-overlay hidden">
+    <div class="modal-card win-card">
+      <div class="modal-avatar crown"><i class="fa-solid fa-crown"></i></div>
+      <h2 id="victoryTitle">VICTORY!</h2>
+      <p id="victoryMessage">You matched all pairs!</p>
+
+      <div class="modal-stats">
+        <div>Total Moves: <strong id="modalMoves">0</strong></div>
+        <div>Total Time: <strong id="modalTime">00:00</strong></div>
+        <div>New Record? <strong id="modalHighScore">No</strong></div>
+      </div>
+
+      <button id="playAgainBtn" class="btn primary-btn full-width">Play Again</button>
+    </div>
+  </div>
+
+  <!-- Confetti CDN Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
